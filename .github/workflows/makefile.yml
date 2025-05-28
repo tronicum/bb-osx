@@ -1,4 +1,4 @@
-name: MacOS Workflow
+name: MacOS build workflow
 on: [push]
 
 jobs:
