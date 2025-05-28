@@ -1,0 +1,25 @@
+name: MacOS Workflow
+on: [push]
+
+jobs:
+  bb-osx-build:
+    name: build bb on osx-darwin
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Install homebrew dependencies
+        run: brew install k6
+
+      - name: configure
+        run: ./configure
+
+      - name: Install dependencies
+        run: make
+        
+      - name: Install dependencies
+        uses: actions/upload-artifact@v4
+        with:
+           name: bb
