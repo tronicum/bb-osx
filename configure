@@ -917,24 +917,7 @@ cross_compiling=$ac_cv_prog_cc_cross
 
 cat > conftest.$ac_ext << EOF
 
-#line 921 "configure"
-#include "confdefs.h"
-
-main(){return(0);}
 EOF
-if { (eval echo configure:926: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-  ac_cv_prog_cc_works=yes
-  # If we can't run a trivial program, we are probably using a cross compiler.
-  if (./conftest; exit) 2>/dev/null; then
-    ac_cv_prog_cc_cross=no
-  else
-    ac_cv_prog_cc_cross=yes
-  fi
-else
-  echo "configure: failed program was:" >&5
-  cat conftest.$ac_ext >&5
-  ac_cv_prog_cc_works=no
-fi
 rm -fr conftest*
 ac_ext=c
 # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
@@ -954,19 +937,11 @@ cross_compiling=$ac_cv_prog_cc_cross
 
 echo $ac_n "checking whether we are using GNU C""... $ac_c" 1>&6
 echo "configure:957: checking whether we are using GNU C" >&5
-if eval "test \"`echo '$''{'ac_cv_prog_gcc'+set}'`\" = set"; then
-  echo $ac_n "(cached) $ac_c" 1>&6
-else
-  cat > conftest.c <<EOF
-#ifdef __GNUC__
-  yes;
-#endif
-EOF
+
 if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:966: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
   ac_cv_prog_gcc=yes
 else
   ac_cv_prog_gcc=no
-fi
 fi
 
 echo "$ac_t""$ac_cv_prog_gcc" 1>&6
@@ -2038,6 +2013,7 @@ fi
 
   min_aalib_version=1.4.0
   echo $ac_n "checking for AALIB - version >= $min_aalib_version""... $ac_c" 1>&6
+  AALIB_CONFIG=/opt/homebrew/bin/aalib-config
 echo "configure:2042: checking for AALIB - version >= $min_aalib_version" >&5
   no_aalib=""
   if test "$AALIB_CONFIG" = "no" ; then
@@ -2241,7 +2217,7 @@ fi
         LIBMIKMOD_CONFIG=$libmikmod_config_prefix/bin/libmikmod-config
      fi
   fi
-
+  libmikmod-config=/opt/homebrew/bin/libmikmod-config
   min_libmikmod_version=3.0.0
   echo $ac_n "checking for libmikmod - version >= $min_libmikmod_version""... $ac_c" 1>&6
 echo "configure:2284: checking for libmikmod - version >= $min_libmikmod_version" >&5
@@ -2857,4 +2833,3 @@ EOF
 chmod +x $CONFIG_STATUS
 rm -fr confdefs* $ac_clean_files
 test "$no_create" = yes || ${CONFIG_SHELL-/bin/sh} $CONFIG_STATUS || exit 1
-
